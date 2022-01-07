@@ -1,40 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Games</title>
-
-
-
-  <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-
-</head>
-
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
   <body>
-<div id="inicio">
-  <h1>Games</h1>
-  <select id="filter" onChange="update()">
-    <option>Selecione</option>
-    <option id="mais" value="mais">Mais Populares</option>
-    <option id="menos" value="nome">Por nome</option>
-    <option id="menos" value="preço">Mais em conta</option>
-
-  </select>
-
-</div>
-
-</>
- <div  id="root">
+  <div id="inicio">
+    <h1>Games</h1>
+    <select id="filter" onChange="filtro()">
+      <option>Selecione</option>
+      <option id="mais" value="mais">Mais Populares</option>
+      <option id="menos" value="nome">Por nome</option>
+      <option id="menos" value="preço">Mais em conta</option>
+    </select>
   </div>
-
-
+  <div  id="root">
+    <div id="container" class="container"></div>
+    <aside>
+        <div id="carrinho">
+          <h1 id="titulo">Carrinho:</h1>
+          <img id="carroIcon" src="../assets/cart-icon.svg" alt="Icone de carrinho">
+        </div>
+        <div id="compras"></div>
+        <div id="pagamento"></div>
+        <!-- <button id="finalizar" class="btn">Finalizar Compra</button> -->
+    </aside>
+  </div>
   <script src="script2.js"></script>
-
-
-</body>
-
+  </body>
 </html>
