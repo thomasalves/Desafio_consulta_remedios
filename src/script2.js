@@ -6,7 +6,7 @@ var subtotal = 0;
 var frete = 0;
 var totalAPagar = 0;
 let flag = 0;
-var lista2 = [0]
+var ListaCompras = [0]
 
 async function getDados() {
   await fetch('../data/products.json')
@@ -41,8 +41,6 @@ function renderCards(data) {
     span.className = "add";
     span.innerHTML = "Adcionar no Carrinho";
     span.addEventListener('click',() => AddCarrinho(index.name, index.image, index.price));
-    //span.addEventListener('click',() => Adicionar())
-
 
     const preco = document.createElement('div');
     preco.className ="price";
@@ -216,18 +214,18 @@ function render_carrinho(games) {
     // AQUI NOS PEGAMOS OS VALORES DO PREÇO ARMAZENADOS, CONVERTEMOS TODOS PARA FLOAT, POIS ELES
     //ANTERIORMENTE VÃO VIR COMO STRING. COM ESSES DADOS NOS OS ADICIONAMOS A UMA LISTA, QUE VAI
     // CONTER TODOS OS VALORES DE PREÇO EXIXTENTE NO CARRINHO.
-    var teste = document.getElementsByClassName('preco_game');
-    for (var pos = 0; pos < teste.length; pos++){
-      valoresGame = parseFloat(teste[pos].innerHTML);
+    var valorCompra = document.getElementsByClassName('preco_game');
+    for (var pos = 0; pos < valorCompra.length; pos++){
+      valoresGame = parseFloat(valorCompra[pos].innerHTML);
       
     }
     if(!flag){
-      lista2.push(valoresGame);
+      ListaCompras.push(valoresGame);
       flag= 0;
     }
     // NESSE REDUCE PODEMOS PEGAR A LISTA E SOMAR TODOS OS VALORES DELA, TENTO ASSIM O VALOR DO SUBTOTAL
-    console.log(lista2)
-    const subtotal = lista2.reduce((total, currentElement) => total + currentElement);
+    console.log(ListaCompras)
+    const subtotal = ListaCompras.reduce((total, currentElement) => total + currentElement);
     
     // ESSE IF SERÁ RESPONSAVEL POR TESTAR SE O SUBTOTAL E MAIOR OU NÃO  QUE 250, SE FOR VALOR O FRETE
     // SERÁ IGUAL A 0, SE FOR MENOR SERÁ R$10 POR ITEM.
@@ -295,19 +293,12 @@ function render_carrinho(games) {
     pagInfo.appendChild(fretePago2);
     pagInfo.appendChild(totalPagar2);
     
-    
-    
   }else{
     
   // COM O CARRINHO VAZIO É PRECISO REMOVER TODOS OS ITENS QUE ALI ESTAVAM, NO CASO
 // ESSE WHILES VÃO REMOVER TODOS OS "FILHOS" DE CADA DIV
-    while(compras.firstChild) {
-      compras.removeChild(compras.firstChild);
-    }
-    while(pagamento.firstChild) {
-      pagamento.removeChild(pagamento.firstChild);
-    } 
-
+    limpar(compras)
+    limpar(pagamento)
     const carro = document.createElement('img');
     carro.id = 'imagem';
     carro.className = "img-carro";
@@ -325,15 +316,12 @@ function render_carrinho(games) {
 
 
 }
-
-
-
 // FUNÇÃO PARA REMOVER ITENS DO CARRINHO E ATUALIZAR SO SUBTOTAL
 function remover (index) {
   
   games.splice(games.indexOf(index), 1);
   var item = parseFloat(index.Valor);
-  lista2.splice(lista2.indexOf(item), 1);
+  ListaCompras.splice(ListaCompras.indexOf(item), 1);
   flag = 1;
   carrinhoIcon(games)
   render_carrinho(games);
@@ -345,61 +333,3 @@ function limpar(elemento) {
     elemento.removeChild(elemento.firstChild);
   }
  }
-
-
-// var request = new XMLHttpRequest();
-// request.open('GET', '../data/products.json', true);
-// var dados = fetch('../data/products.json')
-// .then(resposta => resposta.json())
-// .then(json => {
-//   console.log(json);
-  // }) 
-
-
-//   request.onload = function ap (){
-//     data = JSON.parse(this.responseText);
-
-//     if (request.status >= 200 && request.status < 400) {
-//       data.forEach( index => {
-
-
-//         //console.log(data)
-//      const card = document.createElement('div');
-//      card.className = "card";
-
-
-
-//      const Image = document.createElement('img');
-//      Image.src = index.image;
-
-//      const h1 = document.createElement('div');
-//      h1.className ="name";
-//      h1.innerHTML = index.name;
-
-//      const span = document.createElement('span');
-//      span.className = "add";
-//      span.innerHTML = "Adcionar no Carrinho";
-//      span.addEventListener('click',() => AddCarrinho(index.name, index.image, index.price));
-//      //span.addEventListener('click',() => Adicionar())
-
-
-//      const h3 = document.createElement('div');
-//      h3.className ="price"
-//      h3.innerHTML = `R$ ${index.price}`;
-
-
-//      container.appendChild(card);
-
-//      card.appendChild(Image);
-//      card.appendChild(h1);
-
-//      card.appendChild(h3);
-//      card.appendChild(span);
-
-
-//     });
-//     render_carrinho(games);
-//   }
-// }
-
-// request.send();
