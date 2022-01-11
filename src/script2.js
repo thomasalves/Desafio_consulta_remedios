@@ -85,14 +85,15 @@ function AddCarrinho(nome, imagem, valor) {
   games.push(lista);
   gamesNoCarrinho(games);
   valorGamesNoCarrinho(games)
+  carrinhoHeight(true)
   
 }
 
 function gamesNoCarrinho(games) {
+
   document.getElementById('carrinho').style.display = 'none';
   document.getElementById('finalizar').style.display = 'block';
-  let aside = document.getElementsByTagName('aside')
-  aside[0].style.height = 'auto'
+
   const itens = document.createElement('div');
   limpar(compras)
   limpar(itens)
@@ -190,6 +191,7 @@ function remover (index) {
   games.splice(games.indexOf(index), 1);
   gamesNoCarrinho(games);
   valorGamesNoCarrinho(games)
+  carrinhoHeight(false)
   if(games == 0 ) carrinhoVazio();
   
 }
@@ -233,4 +235,11 @@ function calculoTotalAPagar(games) {
     frete = 0;
   }
   return subtotal +frete;   
+}
+
+function carrinhoHeight(boolean) {
+  let aside = document.getElementsByTagName('aside')
+  let height = parseInt(aside[0].style.height) 
+  boolean ?  height =  height + 70 : height =  height - 70;
+  aside[0].style.height = `${height}px`
 }
