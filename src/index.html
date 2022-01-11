@@ -11,7 +11,7 @@
   <div id="inicio">
     <h1>Games</h1>
     <select id="filter" onChange="filtro()">
-      <option>Selecione</option>
+      <option>Selecione...</option>
       <option id="mais" value="mais">Mais Populares</option>
       <option id="menos" value="nome">Por nome</option>
       <option id="menos" value="preço">Mais em conta</option>
@@ -20,13 +20,16 @@
   <div  id="root">
     <div id="container" class="container"></div>
     <aside>
+      <h1 id="titulo">Carrinho:</h1>
         <div id="carrinho">
-          <h1 id="titulo">Carrinho:</h1>
           <img id="carroIcon" src="../assets/cart-icon.svg" alt="Icone de carrinho">
+          <h3 class="sub">Até o momento, o seu carrinho está vazio"</h3>
         </div>
         <div id="compras"></div>
         <div id="pagamento"></div>
-        <!-- <button id="finalizar" class="btn">Finalizar Compra</button> -->
+        <div class="button">
+          <button style="display:none" id="finalizar" onclick="finalizarCompra()" >Finalizar Compra</button>
+        </div>
     </aside>
   </div>
   <script src="script2.js"></script>

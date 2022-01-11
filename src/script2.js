@@ -89,9 +89,10 @@ function AddCarrinho(nome, imagem, valor) {
 }
 
 function gamesNoCarrinho(games) {
-  document.getElementById('carroIcon').style.display = 'none';
+  document.getElementById('carrinho').style.display = 'none';
   document.getElementById('finalizar').style.display = 'block';
-
+  let aside = document.getElementsByTagName('aside')
+  aside[0].style.height = 'auto'
   const itens = document.createElement('div');
   limpar(compras)
   limpar(itens)
@@ -203,7 +204,7 @@ function limpar(elemento) {
   let carrinho = document.getElementById('compras');
   let valorCarrinho = document.getElementById('pagamento');
   document.getElementById('finalizar').style.display = 'none';
-  // document.getElementById('carroIcon').style.display = 'block';
+  document.getElementById('carroIcon').style.display = 'block';
   games = [];
   limpar(carrinho);
   limpar(valorCarrinho);
@@ -214,24 +215,16 @@ function limpar(elemento) {
 function carrinhoVazio() {
   limpar(compras)
   limpar(pagamento)
-  const carro = document.createElement('img');
-  carro.id = 'imagem';
-  carro.className = "img-carro";
-  carro.src = '../assets/cart-icon.svg';
-    
-  const sub = document.createElement('h3')
-  sub.className = "sub";
-  sub.innerHTML = "Até o momento, o seu carrinho está vazio";
 
-  document.getElementById('carroIcon').style.display = 'block';
+  document.getElementById('carrinho').style.display = 'flex';
   document.getElementById('finalizar').style.display = 'none';
-  
-  compras.appendChild(sub);
+  let aside = document.getElementsByTagName('aside')
+  aside[0].style.height = '300px';
+
 
 }
 
 function calculoTotalAPagar(games) {
-  // console.log(games)
   subtotal = games.reduce((total, elemento) => total + elemento.Valor, 0)
   if(subtotal < 250){
     frete = games.length * 10;
